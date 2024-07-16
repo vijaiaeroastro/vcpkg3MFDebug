@@ -1,4 +1,4 @@
-name: CI
+name: Test lib3mf Installation
 
 on:
   push:
@@ -7,55 +7,142 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        include:
-          - os: ubuntu-latest
-            triplet: x64-linux
-          - os: ubuntu-latest
-            triplet: arm64-linux
-          - os: windows-latest
-            triplet: x86-windows
-          - os: windows-latest
-            triplet: x64-windows
-          - os: windows-latest
-            triplet: x64-windows-static
-          - os: windows-latest
-            triplet: arm64-windows
-          - os: windows-latest
-            triplet: x64-uwp
-          - os: windows-latest
-            triplet: arm64-uwp
-          - os: macos-latest
-            triplet: x64-osx
-          - os: macos-latest
-            triplet: arm64-osx
-
+  install_lib3mf_x64_linux:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up vcpkg (Linux and macOS)
-      if: runner.os != 'Windows'
-      run: |
-        git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-        ./vcpkg/bootstrap-vcpkg.sh
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
 
-    - name: Set up vcpkg (Windows)
-      if: runner.os == 'Windows'
-      run: |
-        git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-        .\vcpkg\bootstrap-vcpkg.bat
+      - name: Install lib3mf
+        run: |
+          ./vcpkg/vcpkg install lib3mf:x64-linux --debug
 
-    - name: Install lib3mf (Linux and macOS)
-      if: runner.os != 'Windows'
-      run: |
-        ./vcpkg/vcpkg install lib3mf:${{ matrix.triplet }} --debug
+  install_lib3mf_arm64_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Install lib3mf (Windows)
-      if: runner.os == 'Windows'
-      run: |
-        .\vcpkg\vcpkg install lib3mf:${{ matrix.triplet }} --debug
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Install lib3mf
+        run: |
+          ./vcpkg/vcpkg install lib3mf:arm64-linux --debug
+
+  install_lib3mf_x86_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:x86-windows --debug
+
+  install_lib3mf_x64_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:x64-windows --debug
+
+  install_lib3mf_x64_windows_static:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:x64-windows-static --debug
+
+  install_lib3mf_arm64_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:arm64-windows --debug
+
+  install_lib3mf_x64_uwp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:x64-uwp --debug
+
+  install_lib3mf_arm64_uwp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install lib3mf
+        run: |
+          .\vcpkg\vcpkg install lib3mf:arm64-uwp --debug
+
+  install_lib3mf_x64_osx:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Install lib3mf
+        run: |
+          ./vcpkg/vcpkg install lib3mf:x64-osx --debug
+
+  install_lib3mf_arm64_osx:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up vcpkg
+        run: |
+          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Install lib3mf
+        run: |
+          ./vcpkg/vcpkg install lib3mf:arm64-osx --debug
