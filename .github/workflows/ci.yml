@@ -41,13 +41,13 @@ jobs:
     - name: Set up vcpkg (Linux and macOS)
       if: runner.os != 'Windows'
       run: |
-        git clone --recurse-submodules git@github.com:3MFConsortium/vcpkg.git
+        git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
         ./vcpkg/bootstrap-vcpkg.sh
 
     - name: Set up vcpkg (Windows)
       if: runner.os == 'Windows'
       run: |
-        git clone --recurse-submodules git@github.com:3MFConsortium/vcpkg.git
+        git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
         .\vcpkg\bootstrap-vcpkg.bat
 
     - name: Install lib3mf (Linux and macOS)
