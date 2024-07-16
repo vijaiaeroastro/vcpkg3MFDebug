@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            triplet: x64-linux
+          - os: ubuntu-latest
+            triplet: arm64-linux
+          - os: windows-latest
+            triplet: x86-windows
+          - os: windows-latest
+            triplet: x64-windows
+          - os: windows-latest
+            triplet: x64-windows-static
+          - os: windows-latest
+            triplet: arm64-windows
+          - os: windows-latest
+            triplet: x64-uwp
+          - os: windows-latest
+            triplet: arm64-uwp
+          - os: macos-latest
+            triplet: x64-osx
+          - os: macos-latest
+            triplet: arm64-osx
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up vcpkg (Linux and macOS)
+      if: runner.os != 'Windows'
+      run: |
+        git clone --recurse-submodules git@github.com:3MFConsortium/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.sh
+
+    - name: Set up vcpkg (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        git clone --recurse-submodules git@github.com:3MFConsortium/vcpkg.git
+        .\vcpkg\bootstrap-vcpkg.bat
+
+    - name: Install lib3mf (Linux and macOS)
+      if: runner.os != 'Windows'
+      run: |
+        ./vcpkg/vcpkg install lib3mf:${{ matrix.triplet }} --debug
+
+    - name: Install lib3mf (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        .\vcpkg\vcpkg install lib3mf:${{ matrix.triplet }} --debug
