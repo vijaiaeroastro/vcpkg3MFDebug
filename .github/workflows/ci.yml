@@ -28,27 +28,6 @@ jobs:
           name: lib3mf-x64-linux-buildtrees
           path: ./vcpkg/buildtrees/lib3mf
 
-  install_lib3mf_arm64_linux:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up vcpkg
-        run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-          ./vcpkg/bootstrap-vcpkg.sh
-
-      - name: Install lib3mf
-        run: |
-          ./vcpkg/vcpkg install lib3mf:arm64-linux --debug
-
-      - name: Upload buildtrees/lib3mf artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib3mf-arm64-linux-buildtrees
-          path: ./vcpkg/buildtrees/lib3mf
-
   install_lib3mf_x86_windows:
     runs-on: windows-latest
     steps:
@@ -89,90 +68,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: lib3mf-x64-windows-buildtrees
-          path: ./vcpkg/buildtrees/lib3mf
-
-  install_lib3mf_x64_windows_static:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up vcpkg
-        run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
-
-      - name: Install lib3mf
-        run: |
-          .\vcpkg\vcpkg install lib3mf:x64-windows-static --debug
-
-      - name: Upload buildtrees/lib3mf artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib3mf-x64-windows-static-buildtrees
-          path: ./vcpkg/buildtrees/lib3mf
-
-  install_lib3mf_arm64_windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up vcpkg
-        run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
-
-      - name: Install lib3mf
-        run: |
-          .\vcpkg\vcpkg install lib3mf:arm64-windows --debug
-
-      - name: Upload buildtrees/lib3mf artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib3mf-arm64-windows-buildtrees
-          path: ./vcpkg/buildtrees/lib3mf
-
-  install_lib3mf_x64_uwp:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up vcpkg
-        run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
-
-      - name: Install lib3mf
-        run: |
-          .\vcpkg\vcpkg install lib3mf:x64-uwp --debug
-
-      - name: Upload buildtrees/lib3mf artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib3mf-x64-uwp-buildtrees
-          path: ./vcpkg/buildtrees/lib3mf
-
-  install_lib3mf_arm64_uwp:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up vcpkg
-        run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
-
-      - name: Install lib3mf
-        run: |
-          .\vcpkg\vcpkg install lib3mf:arm64-uwp --debug
-
-      - name: Upload buildtrees/lib3mf artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib3mf-arm64-uwp-buildtrees
           path: ./vcpkg/buildtrees/lib3mf
 
   install_lib3mf_x64_osx:
