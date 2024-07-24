@@ -19,7 +19,7 @@ jobs:
 
       - name: Install lib3mf
         run: |
-          ./vcpkg/vcpkg install lib3mf:x64-linux --debug --allow-unsupported
+          ./vcpkg/vcpkg install lib3mf:x64-linux --debug
 
       - name: Upload buildtrees/lib3mf artifact
         if: failure()
@@ -40,7 +40,7 @@ jobs:
 
       - name: Install lib3mf
         run: |
-          .\vcpkg\vcpkg install lib3mf:x86-windows --debug --allow-unsupported
+          .\vcpkg\vcpkg install lib3mf:x86-windows --debug
 
       - name: Upload buildtrees/lib3mf artifact
         if: failure()
@@ -61,7 +61,7 @@ jobs:
 
       - name: Install lib3mf
         run: |
-          .\vcpkg\vcpkg install lib3mf:x64-windows --debug --allow-unsupported
+          .\vcpkg\vcpkg install lib3mf:x64-windows --debug
 
       - name: Upload buildtrees/lib3mf artifact
         if: failure()
@@ -82,7 +82,7 @@ jobs:
 
       - name: Install lib3mf
         run: |
-          ./vcpkg/vcpkg install lib3mf:x64-osx --debug --allow-unsupported
+          ./vcpkg/vcpkg install lib3mf:x64-osx --debug
 
       - name: Upload buildtrees/lib3mf artifact
         if: failure()
@@ -103,7 +103,7 @@ jobs:
 
       - name: Install lib3mf
         run: |
-          ./vcpkg/vcpkg install lib3mf:arm64-osx --debug --allow-unsupported
+          ./vcpkg/vcpkg install lib3mf:arm64-osx --debug
 
       - name: Upload buildtrees/lib3mf artifact
         if: failure()
