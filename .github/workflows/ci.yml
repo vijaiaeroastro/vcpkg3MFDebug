@@ -14,7 +14,7 @@ jobs:
 
       - name: Set up vcpkg
         run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          git clone --recurse-submodules https://github.com/microsoft/vcpkg
           ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Install lib3mf
@@ -35,7 +35,7 @@ jobs:
 
       - name: Set up vcpkg
         run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          git clone --recurse-submodules https://github.com/microsoft/vcpkg
           .\vcpkg\bootstrap-vcpkg.bat
 
       - name: Install lib3mf
@@ -56,7 +56,7 @@ jobs:
 
       - name: Set up vcpkg
         run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          git clone --recurse-submodules https://github.com/microsoft/vcpkg
           .\vcpkg\bootstrap-vcpkg.bat
 
       - name: Install lib3mf
@@ -77,7 +77,7 @@ jobs:
 
       - name: Set up vcpkg
         run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          git clone --recurse-submodules https://github.com/microsoft/vcpkg
           ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Install lib3mf
@@ -98,7 +98,7 @@ jobs:
 
       - name: Set up vcpkg
         run: |
-          git clone --recurse-submodules https://github.com/3MFConsortium/vcpkg.git
+          git clone --recurse-submodules https://github.com/microsoft/vcpkg
           ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Install lib3mf
